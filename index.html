@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Testing Lambda@Edge</title>
+
+  </head>
+
+  <body bgcolor="FFFFFF">
+
+    <div>
+        <h1>Testing Lambda@Edge</h1>
+    </div>
+
+    <div>
+        <!-- This will take the input text which should be a valid GitHub username, 
+        and append it to the GET method querystring as a named key value pair. -->
+        <form action="index.html?" method="GET">
+          Enter GitHub username to query from GitHub API (example: mbacchi):
+          <input type="text" length=25 name="username"></input>
+          <button type="submit" id="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
