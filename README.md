@@ -115,8 +115,12 @@ page.
 If you don't see the output you expect, i.e. the GitHub user information, there
 are a couple ways to find problems.
 
-1. Open the Developer Console in Chrome (or whatever browser you are using)
-2. Go to AWS CloudWatch Logs, open the Log Group `/aws/lambda/us-east-1.viewer_request_lambda` or `/aws/lambda/us-east-1.origin_response_lambda`, and view the recent logs, to see if there are server side errors.
+1. Open the Developer Console in Chrome (or whatever browser you are using).
+   Reload the page and see if there are any errors in the console.log.
+2. Go to AWS CloudWatch Logs, open the Log Group
+   `/aws/lambda/us-east-1.viewer_request_lambda` or
+   `/aws/lambda/us-east-1.origin_response_lambda`, and view the recent logs, to
+   see if there are server side errors.
 
 ## Tearing down the infrastructure
 
