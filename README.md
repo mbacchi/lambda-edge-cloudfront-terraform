@@ -48,13 +48,13 @@ This will create a Terraform plan file, which you can then apply with the comman
 aws-vault exec profile_name -- terraform apply devplan.2020-01-19.08.44.07.out
 ```
 
-**NOTE**: Terraform apply` it can take up to 20 or 30 minutes to replicate the
+**NOTE**: Terraform apply can take up to 20 or 30 minutes to replicate the
 Lambda@Edge function across all the (supported) AWS regions. You may not want to
 replicate and that would be fine, but doesn't fit the model of using all AWS
 regions to run Lambda at their edge locations. If you don't create the Lambda
 function in the `us-east-1` (N. Virginia) region, as far as I understand (at
 this time) it will not be replicated to all AWS regions.
-
+ 
 The distribution name will be shown in the output at the end, something such as:
 
 ```
