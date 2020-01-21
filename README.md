@@ -68,7 +68,7 @@ Then you will need to determine the distribution domain name. This can be shown
 with the command, using the ID shown in the above output:
 
 ```
-aws-vault exec --no-session experiments_user1 -- aws cloudfront get-distribution --id E2U0H2YCG3AYFU
+aws-vault exec --no-session profile_name -- aws cloudfront get-distribution --id E2U0H2YCG3AYFU
 ```
 
 Look in the JSON output for the Distribution.DomainName, it appears like:
