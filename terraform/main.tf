@@ -66,7 +66,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     Name        = "lambda_edge_cloudfront_terraform"
   }
 
-  price_class = "PriceClass_100"
+  price_class = "PriceClass_All"
 
   restrictions {
     geo_restriction {

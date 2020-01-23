@@ -34,6 +34,17 @@ These steps include:
   to manage AWS credentials. I personally use aws-vault, as you will see in the
   commands used below.
 
+### Determine Country Codes to add to Whitelist
+
+By default, this CloudFront distribution uses a whitelist in order to limit the
+countries that requests can come from. The whitelist only includes the United
+States(`US`). In order to allow traffic to come from other countries, either add
+your country code, to the list of [allowed
+countries](https://github.com/mbacchi/lambda-edge-cloudfront-terraform/blob/master/terraform/main.tf#L74)
+or [comment out the restrictions
+list](https://github.com/mbacchi/lambda-edge-cloudfront-terraform/blob/master/terraform/main.tf#L71)
+altogether.
+
 ### Deploy
 
 1. Run the following commands to deploy:
