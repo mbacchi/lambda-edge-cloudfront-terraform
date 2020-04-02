@@ -59,12 +59,16 @@ This will create a Terraform plan file, which you can then apply with the comman
 aws-vault exec profile_name -- terraform apply devplan.2020-01-19.08.44.07.out
 ```
 
-**NOTE**: Terraform apply can take up to 20 or 30 minutes to replicate the
-Lambda@Edge function across all the (supported) AWS regions. You may not want to
-replicate and that would be fine, but doesn't fit the model of using all AWS
-regions to run Lambda at their edge locations. If you don't create the Lambda
-function in the `us-east-1` (N. Virginia) region, as far as I understand (at
-this time) it will not be replicated to all AWS regions.
+**NOTE**: Terraform apply can take up to 5 minutes to replicate the Lambda@Edge
+function across all the (supported) AWS regions. This used to take longer but
+the AWS CloudFront team
+[announced](https://aws.amazon.com/blogs/networking-and-content-delivery/slashing-cloudfront-change-propagation-times-in-2020-recent-changes-and-looking-forward/)
+they recently improved these deployment times.
+
+You may not want to replicate and that would be fine, but doesn't fit the model
+of using all AWS regions to run Lambda at their edge locations. If you don't
+create the Lambda function in the `us-east-1` (N. Virginia) region, as far as I
+understand (at this time) it will not be replicated to all AWS regions.
  
 The distribution name will be shown in the output at the end, something such as:
 
@@ -100,13 +104,9 @@ aws-vault exec profile_name -- aws s3 cp script.js s3://terraform-20200118165546
 
 ### Re-deploying
 
-Remember from the above NOTE, when running `terraform apply` it can take up to
-20 or 30 minutes to replicate the Lambda@Edge function across all the
-(supported) AWS regions. You may not want to replicate and that would be fine,
-but doesn't fit the model of using all AWS regions to run Lambda at their edge
-locations. If you don't create the Lambda function in the `us-east-1` (N.
-Virginia) region, as far as I understand (at this time) it will not be
-replicated to all AWS regions.
+Remember from the above NOTE, when running `terraform apply` it can take up to 5
+minutes to replicate the Lambda@Edge function across all the (supported) AWS
+regions.
 
 ## Viewing the site
 
@@ -135,7 +135,7 @@ are a couple ways to find problems.
 
 ## Tearing down the infrastructure
 
-Deleting the replicated Lambda functions takes time, just like deploying the
+Deleting the replicated Lambda functions takes a little time, just like deploying the
 Lambda to all replicated regions does. In order to perform this deletion in a
 timely fashion, you first need to remove the function association in the
 CloudFront distribution via the AWS console. Browse to CloudFront in the AWS
@@ -145,7 +145,7 @@ Finally at the bottom of the "Edit Behavior" page, click on the X for both the
 "Viewer Request" and "Origin Response" CloudFront Events. Once these are removed
 select "Yes, Edit", which is apparently the "Save" button in CloudFront.
 
-Now, wait 20-30 minutes before running `terraform destroy` to remove the
+Now, wait at least 5 minutes before running `terraform destroy` to remove the
 infrastucture via Terraform.
 
 This wait time is required because Terraform will attempt to remove the Lambda
@@ -161,7 +161,7 @@ Error: Error deleting Lambda Function: InvalidParameterValueException: Lambda wa
 	status code: 400, request id: e47befaa-79f8-42c3-84f8-774df27f31d4
 ```
 
-Either wait 20-30 minutes to re-run `terraform destroy` or remove the
+Either wait 5 minutes to re-run `terraform destroy` or remove the
 association with the CloudFront distribution as described above.
 
 Enjoy!
